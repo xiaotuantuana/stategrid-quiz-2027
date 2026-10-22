@@ -15,7 +15,7 @@ from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngin
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
 TITLE = '国网题库 2027'
-VERSION = '2027.1.1-desktop.1'
+VERSION = '2027.1.2-desktop.1'
 EXPORT_JS = "JSON.stringify({schema:2,edition:DATA.version,exported:new Date().toISOString(),state},null,2)"
 
 
@@ -69,7 +69,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.web)
         self.web.loadFinished.connect(self.loaded)
         self.make_menus()
-        self.statusBar().showMessage('正在载入 5,280 道离线练习题…')
+        self.statusBar().showMessage('正在载入 1,861 道离线练习题…')
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.auto_backup)
         self.timer.start(60000)
@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
         self.action(view, '全屏 / 退出全屏', lambda: self.showNormal() if self.isFullScreen() else self.showFullScreen(), 'F11')
         help_menu = self.menuBar().addMenu('帮助(&H)')
         self.action(help_menu, '使用说明', self.help)
-        self.action(help_menu, '关于 / 开源许可', lambda: QMessageBox.information(self, '关于', TITLE + '\n' + VERSION + '\n5,280 条练习，含已标注的参数变式。\n不代表 5,280 个独立题型或国网历年真题。\n\n课程题许可见题目来源。桌面组件采用 Qt / PySide6 LGPL v3。\n许可文件与源码位于软件文件夹及项目 desktop 目录。'))
+        self.action(help_menu, '关于 / 开源许可', lambda: QMessageBox.information(self, '关于', TITLE + '\n' + VERSION + '\n1,861 条练习，已移除同题型仅换数值的重复题。\n不代表 1,861 个独立题型或国网历年真题。\n\n课程题许可见题目来源。桌面组件采用 Qt / PySide6 LGPL v3。\n许可文件与源码位于软件文件夹及项目 desktop 目录。'))
 
     def zoom(self, delta):
         self.web.setZoomFactor(max(0.7, min(1.8, self.web.zoomFactor() + delta)))
@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
 
     def loaded(self, ok):
         self.ready = ok and self.web.url().fileName() == 'index.html'
-        self.statusBar().showMessage('离线桌面版 · 5,280 题 · 记录自动保存在本机 · Ctrl+S 导出备份' if ok else '载入失败，请检查软件文件夹是否完整')
+        self.statusBar().showMessage('离线桌面版 · 1,861 题 · 记录自动保存在本机 · Ctrl+S 导出备份' if ok else '载入失败，请检查软件文件夹是否完整')
 
     def open_source(self, request):
         if request.requestedUrl().scheme() in ('http', 'https'):
