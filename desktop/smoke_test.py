@@ -34,7 +34,7 @@ def install_smoke_test(app, window, args):
                 QFileDialog.getOpenFileName = staticmethod(lambda *a, **k: (str(imported), 'JSON'))
                 QMessageBox.question = staticmethod(lambda *a, **k: QMessageBox.StandardButton.Yes)
                 window.import_backup()
-                QTimer.singleShot(1000, lambda: js("({count:ALL.length,fav:Object.keys(state.fav).length})", lambda r: finish(check('native import accepts previous edition', r['count'] == 5280 and r['fav'] == 1))))
+                QTimer.singleShot(1000, lambda: js("({count:ALL.length,fav:Object.keys(state.fav).length})", lambda r: finish(check('native import accepts previous edition', r['count'] == 1861 and r['fav'] == 1))))
             else:
                 window.grab().save(str(output / 'desktop-window.png'))
                 finish(True)
@@ -53,7 +53,7 @@ def install_smoke_test(app, window, args):
         else:
             code = "(()=>{go('wrong');return {count:ALL.length,stem:document.querySelector('.stem')?.textContent,fav:Object.keys(state.fav).length,done:Object.keys(state.done).length};})()"
         def result(value):
-            if not check('native engine loads all 5280 questions', value and value.get('count') == 5280):
+            if not check('native engine loads all 1861 questions', value and value.get('count') == 1861):
                 return
             if not check('question renders in native window', bool(value.get('stem'))):
                 return
