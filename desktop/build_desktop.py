@@ -36,7 +36,7 @@ if '--assets-only' not in sys.argv:
     for name in ('icuuc.dll', 'icudt78.dll'):
         (target / '_internal' / name).unlink(missing_ok=True)
     shutil.copy2(ROOT / 'LICENSE-web-round2.md', target)
-    (target / '使用说明.txt').write_text('国网题库2027 · Windows免安装版\n\n双击“国网题库2027.exe”启动，无需Python，可离线练习。\n请保留同目录的_internal文件夹，移动软件时请移动整个文件夹。\n\n记录自动保存在 %LOCALAPPDATA%\\StateGridQuiz2027。\n每分钟及退出时自动备份；在“记录”菜单可打开备份文件夹。\nCtrl+S导出，Ctrl+O导入。网页版记录须先导出，再导入本软件。\nCtrl+加号/减号缩放字号，F11全屏。\n\n题库5280条，含3567条参数变式；不代表同等数量独立题型或国网真题。\n开源与课程许可见LICENSE文件，源代码见项目desktop目录。\n', encoding='utf-8')
+    (target / '使用说明.txt').write_text('国网题库2027 · Windows免安装版\n\n双击“国网题库2027.exe”启动，无需Python，可离线练习。\n请保留同目录的_internal文件夹，移动软件时请移动整个文件夹。\n\n记录自动保存在 %LOCALAPPDATA%\\StateGridQuiz2027。\n每分钟及退出时自动备份；在“记录”菜单可打开备份文件夹。\nCtrl+S导出，Ctrl+O导入。网页版记录须先导出，再导入本软件。\nCtrl+加号/减号缩放字号，F11全屏。\n\n题库1861条，同一原创计算题型只保留一个代表题；答对自动下一题，答错查看解析后手动下一题。\n开源与课程许可见LICENSE文件，源代码见项目desktop目录。\n', encoding='utf-8')
     import PySide6
     package = Path(PySide6.__file__).parent
     license_dir = target / 'licenses'
